@@ -205,13 +205,45 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
 		switch(d.tipo){
 			case '1': d.tipo = 'Alimentação'
 				break
-			case '2': d.tipo = 'Educação'
+			case '2': d.tipo = 'Assinatura e serviços'
 				break
-			case '3': d.tipo = 'Lazer'
+			case '3': d.tipo = 'Bares e Restaurantes'
 				break
-			case '4': d.tipo = 'Saúde'
+			case '4': d.tipo = 'Casa'
 				break
-			case '5': d.tipo = 'Transporte'
+			case '5': d.tipo = 'Compras'
+				break
+			case '6': d.tipo = 'Cuidados Pessoais'
+				break
+			case '7': d.tipo = 'Dívidas e empréstimos'
+				break
+			case '8': d.tipo = 'Educação'
+				break
+			case '9': d.tipo = 'Família e filhos'
+				break
+			case '10': d.tipo = 'Impostos e taxas'
+				break
+			case '11': d.tipo = 'Investimentos'
+				break
+			case '12': d.tipo = 'Lazer e hobbies'
+				break
+			case '13': d.tipo = 'Mercado'
+				break
+			case '14': d.tipo = 'Outros'
+				break
+			case '15': d.tipo = 'Pets'
+				break
+			case '16': d.tipo = 'Presentes e doações'
+				break
+			case '17': d.tipo = 'Roupas'
+				break
+			case '18': d.tipo = 'Saúde'
+				break
+			case '19': d.tipo = 'Trabalho'
+				break
+			case '20': d.tipo = 'Transporte'
+				break
+			case '21': d.tipo = 'Viagem'
 				break
 			
 		}
