@@ -33,7 +33,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Cadastro</a>
+              <a class="nav-link" href="index.html">Cartão</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="despesa.html">Despesa</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="consulta.html">Consulta</a>
@@ -46,20 +49,20 @@
         </div>
       </div>
     </nav>
+    <!-- !--> <!-- !--> <!-- !--> <!-- !-->
+    <div class="container">
+      <div class="col mb-5">
+          <h1 class="display-4">Consulta de despesas</h1>        
+      </class>
+    </div>  
 
     <div class="container">
-      <div class="row mb-5">
-        <div class="col">
-          <h1 class="display-4">Consulta de despesas</h1>
-        </div>
-      </div>
-
-      <div class="row mb-2">
-        <div class="col-md-2">
+      <div class="row">
+        <div class="col-2 col-sm-2">
           <input type="text" class="form-control" placeholder="Ano" id="ano" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-2 col-sm-2">
           <select class="form-control" id="mes">
             <option value="">Mês</option>
             <option value="1">Janeiro</option>
@@ -77,13 +80,24 @@
           </select>
         </div>
         
-        <div class="col-md-2">
+        <div class="col-2 col-sm-2">
           <input type="text" class="form-control" placeholder="Dia" id="dia" />
         </div>
 
-        <div class="col-md-6">
-          <select class="form-control" id="tipo">
-            <option value="">Tipo</option>
+        <div class="col-md-4 col-sm-3">
+          <select class="form-control" id="cartao">
+            <option value="">Cartão</option>
+            <option value="1">Visa</option>
+            <option value="2">Master</option>
+            <option value="3">Cielo</option>
+          </select>
+        </div>
+
+        <br><br>
+
+        <div class="col-md-6 col-sm-3">
+          <select class="form-control" id="categoria">
+            <option value="">Categoria</option>
             <option value="1">Alimentação</option>
             <option value="2">Assinatura e serviços</option>
             <option value="3">Bares e Restaurantes</option>
@@ -106,24 +120,43 @@
             <option value="20">Transporte</option>
             <option value="21">Viagem</option>
           </select>
-        </div>
+        </div>      
+
+      <div class="col-2 col-sm-3">
+        <select class="form-control" id="parcela">
+          <option value="">Parcela</option>
+          <option value="1">1x</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+          <option value="4">4x</option>
+          <option value="5">5x</option>
+          <option value="6">6x</option>
+          <option value="7">7x</option>
+          <option value="8">8x</option>
+          <option value="9">9x</option>
+          <option value="10">10x</option>
+          <option value="11">11x</option>
+          <option value="12">12x</option>          
+        </select>
       </div>
 
-      <div class="row  mb-5">
-        <div class="col-md-8">
-          <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
-        </div>
+      <br><br>
 
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Valor" id="valor" />
-        </div>
-
-        <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary" onclick="pesquisarDespesa()">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+      <div class="col-md-8 col-sm-3">
+        <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
       </div>
+
+      <div class="col-md-2 col-sm-3">
+        <input type="text" class="form-control" placeholder="Valor" id="valor" />
+      </div>
+
+      <div class="col-md-2 d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" onclick="pesquisarDespesa()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      
+      <br><br>
 
       <div class="row">
         <div class="col">
@@ -131,9 +164,11 @@
             <thead>
               <tr>
                 <th>Data</th>
-                <th>Tipo</th>
+                <th>Categoria</th>
+                <th>Cartão</th>
                 <th>Descrição</th>
                 <th>Valor</th>
+                <th>Parcela</th>                
                 <th></th>
               </tr>
             </thead>

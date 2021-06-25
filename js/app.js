@@ -1,11 +1,13 @@
 class Despesa {
-	constructor(ano, mes, dia, tipo, descricao, valor) {
+	constructor(ano, mes, dia, cartao, categoria, parcela, descricao, valor) {
 		this.ano = ano
 		this.mes = mes
 		this.dia = dia
-		this.tipo = tipo
+		this.cartao = cartao
+		this.categoria = categoria
+		this.parcela = parcela	
 		this.descricao = descricao
-		this.valor = valor
+		this.valor = valor			
 	}
 
 	validarDados() {
@@ -91,10 +93,10 @@ class Bd {
 			despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
 		}
 
-		//tipo
-		if(despesa.tipo != ''){
-			console.log("filtro de tipo");
-			despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo)
+		//categoria
+		if(despesa.categoria != ''){
+			console.log("filtro de categoria");
+			despesasFiltradas = despesasFiltradas.filter(d => d.categoria == despesa.categoria)
 		}
 
 		//descricao
@@ -109,6 +111,11 @@ class Bd {
 			despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor)
 		}
 
+		//cartao
+		if(despesa.cartao != ''){
+			console.log("filtro de cartão");
+			despesasFiltradas = despesasFiltradas.filter(d => d.cartao == despesa.cartao)
+		}		
 		
 		return despesasFiltradas
 
@@ -127,17 +134,21 @@ function cadastrarDespesa() {
 	let ano = document.getElementById('ano')
 	let mes = document.getElementById('mes')
 	let dia = document.getElementById('dia')
-	let tipo = document.getElementById('tipo')
+	let cartao = document.getElementById('cartao')
+	let categoria = document.getElementById('categoria')
+	let parcela = document.getElementById('parcela')
 	let descricao = document.getElementById('descricao')
 	let valor = document.getElementById('valor')
-
+		
 	let despesa = new Despesa(
 		ano.value, 
 		mes.value, 
 		dia.value, 
-		tipo.value, 
+		cartao.value,		
+		categoria.value, 
+		parcela.value,
 		descricao.value,
-		valor.value
+		valor.value		
 	)
 
 
@@ -156,7 +167,9 @@ function cadastrarDespesa() {
 		ano.value = '' 
 		mes.value = ''
 		dia.value = ''
-		tipo.value = ''
+		cartao.value = ''		
+		categoria.value = ''
+		parcela.value = ''		
 		descricao.value = ''
 		valor.value = ''
 		
@@ -201,55 +214,97 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
 		//Criando as colunas (td)
 		linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}` 
 
-		//Ajustar o tipo
-		switch(d.tipo){
-			case '1': d.tipo = 'Alimentação'
+		//Ajustar o categoria
+		switch(d.categoria){
+			case '1': d.categoria = 'Alimentação'
 				break
-			case '2': d.tipo = 'Assinatura e serviços'
+			case '2': d.categoria = 'Assinatura e serviços'
 				break
-			case '3': d.tipo = 'Bares e Restaurantes'
+			case '3': d.categoria = 'Bares e Restaurantes'
 				break
-			case '4': d.tipo = 'Casa'
+			case '4': d.categoria = 'Casa'
 				break
-			case '5': d.tipo = 'Compras'
+			case '5': d.categoria = 'Compras'
 				break
-			case '6': d.tipo = 'Cuidados Pessoais'
+			case '6': d.categoria = 'Cuidados Pessoais'
 				break
-			case '7': d.tipo = 'Dívidas e empréstimos'
+			case '7': d.categoria = 'Dívidas e empréstimos'
 				break
-			case '8': d.tipo = 'Educação'
+			case '8': d.categoria = 'Educação'
 				break
-			case '9': d.tipo = 'Família e filhos'
+			case '9': d.categoria = 'Família e filhos'
 				break
-			case '10': d.tipo = 'Impostos e taxas'
+			case '10': d.categoria = 'Impostos e taxas'
 				break
-			case '11': d.tipo = 'Investimentos'
+			case '11': d.categoria = 'Investimentos'
 				break
-			case '12': d.tipo = 'Lazer e hobbies'
+			case '12': d.categoria = 'Lazer e hobbies'
 				break
-			case '13': d.tipo = 'Mercado'
+			case '13': d.categoria = 'Mercado'
 				break
-			case '14': d.tipo = 'Outros'
+			case '14': d.categoria = 'Outros'
 				break
-			case '15': d.tipo = 'Pets'
+			case '15': d.categoria = 'Pets'
 				break
-			case '16': d.tipo = 'Presentes e doações'
+			case '16': d.categoria = 'Presentes e doações'
 				break
-			case '17': d.tipo = 'Roupas'
+			case '17': d.categoria = 'Roupas'
 				break
-			case '18': d.tipo = 'Saúde'
+			case '18': d.categoria = 'Saúde'
 				break
-			case '19': d.tipo = 'Trabalho'
+			case '19': d.categoria = 'Trabalho'
 				break
-			case '20': d.tipo = 'Transporte'
+			case '20': d.categoria = 'Transporte'
 				break
-			case '21': d.tipo = 'Viagem'
+			case '21': d.categoria = 'Viagem'
 				break
 			
 		}
-		linha.insertCell(1).innerHTML = d.tipo
-		linha.insertCell(2).innerHTML = d.descricao
-		linha.insertCell(3).innerHTML = d.valor
+
+		linha.insertCell(1).innerHTML = d.categoria
+
+		//Ajustar o cartão
+		switch(d.cartao){
+			case '1': d.cartao = 'Visa'
+				break
+			case '2': d.cartao = 'Master'
+				break
+			case '3': d.cartao = 'Cielo'
+				break
+		}
+
+		linha.insertCell(2).innerHTML = d.cartao		
+		linha.insertCell(3).innerHTML = d.descricao
+		linha.insertCell(4).innerHTML = d.valor
+
+		switch(d.parcela){
+			case '1': d.parcela = '1x'
+				break
+			case '2': d.parcela = '2x'
+				break
+			case '3': d.parcela = '3x'
+				break
+			case '4': d.parcela = '4x'
+				break
+			case '5': d.parcela = '5x'
+				break
+			case '6': d.parcela = '6x'
+				break
+			case '7': d.parcela = '7x'
+				break
+			case '8': d.parcela = '8x'
+				break
+			case '9': d.parcela = '9x'
+				break
+			case '10': d.parcela = '10x'
+				break
+			case '11': d.parcela = '11x'
+				break
+			case '12': d.parcela = '12x'
+				break
+		}
+
+		linha.insertCell(5).innerHTML = d.parcela
 
 		//Criar o botão de exclusão
 		let btn = document.createElement('button')
@@ -262,7 +317,7 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
 			bd.remover(id)
 			window.location.reload()
 		}
-		linha.insertCell(4).append(btn)
+		linha.insertCell(6).append(btn)
 		console.log(d)
 	})
 
@@ -274,11 +329,13 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
 	let ano  = document.getElementById("ano").value
 	let mes = document.getElementById("mes").value
 	let dia = document.getElementById("dia").value
-	let tipo = document.getElementById("tipo").value
+	let cartao = document.getElementById("cartao").value
+	let categoria = document.getElementById("categoria").value
+	let parcela = document.getElementById("parcela").value
 	let descricao = document.getElementById("descricao").value
 	let valor = document.getElementById("valor").value
 
-	let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+	let despesa = new Despesa(ano, mes, dia, cartao, categoria, parcela, descricao, valor)
 
 	let despesas = bd.pesquisar(despesa)
 	 
