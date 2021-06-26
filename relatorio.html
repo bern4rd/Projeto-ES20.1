@@ -11,8 +11,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Bootstrap fim -->
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <style>
+      #logo {
+        filter: contrast(0%);
+        filter: brightness(200%);   
+      }
+    </style>
 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="app.js"></script>
 
 	</head>
@@ -23,7 +29,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
       <div class="container">
         <a class="navbar-brand" href="#">
-           <img src="/img/logo.png" width="100" height="35" alt="Cliente Joana">
+           <img id="logo" src="/img/logo.png" width="100" height="35" alt="Cliente Joana">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
