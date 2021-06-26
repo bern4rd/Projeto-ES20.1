@@ -3,6 +3,8 @@
     <meta charset="utf-8" />
 		<title>Gerenciador de Despesas da Joana</title>
 
+    <link rel="stylesheet" href="css/style.css">
+
 		<!-- Bootstrap início -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -10,13 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Bootstrap fim -->
-
-    <style>
-      #logo {
-        filter: contrast(0%);
-        filter: brightness(200%);   
-      }
-    </style>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="app.js"></script>
@@ -54,6 +49,54 @@
         </div>
       </div>
     </nav>
-  </body>	
+
+     <div class="container">
+    <div class="row">
+      <div class="col mb-5">
+        <h1 class="display-4">Registro de novo cartão</h1>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      
+      <div class="col-md-auto">
+        <input type="text" class="form-control" placeholder="Nome do cartão" id="nome" />
+      </div>
+
+      <div class="col-md-auto">
+        <input type="date" class="form-control" id="rel_data_inicio" />
+      </div>
+
+      <div class="col-md-auto">
+        <input type="date" class="form-control" id="rel_data_fim" />
+      </div>
+
+
+      <div class="col-md-auto d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" disabled>
+          Gerar Relatório
+          <i class="fas fa-chart-bar"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalRegistraCompra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div id="modal_titulo_div">
+          <h5 class="modal-title" id="modal_titulo"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <div class="modal-body" id="modal_conteudo"></div>
+    <div class="modal-footer">
+          <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
+  </div>
+
+</body>
 
 </html>

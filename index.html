@@ -1,163 +1,173 @@
 <html>
-	<head>
-    <meta charset="utf-8" />
-		<title>Gerenciador de Despesas da Joana</title>
 
-		<!-- Bootstrap início -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Gerenciador de Despesas da Joana</title>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Bootstrap fim -->
-     
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <script src="/js/app.js"></script>
+  <!-- Bootstrap início -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
 
-    <style>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap fim -->
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script src="/js/app.js"></script>
+
+  <style>
     #logo {
       filter: contrast(0%);
-      filter: brightness(200%);   
+      filter: brightness(200%);
     }
-    </style>
+  </style>
 
-	</head>
+</head>
 
-  <body>
+<body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-           <img id="logo" src="/img/logo.png" width="100" height="35" alt="Orçamento pessoal">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Cartão</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="despesa.html">Despesa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="consulta.html">Consulta</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/relatorio.html">Relatório</a>
-            </li>
-          </ul>
-          
-        </div>
-      </div>
-    </nav>
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
     <div class="container">
-      <div class="row">
-        <div class="col mb-5">
-          <h1 class="display-4">Registro de novo cartão</h1>
-        </div>
+      <a class="navbar-brand" href="#">
+        <img id="logo" src="/img/logo.png" width="100" height="35" alt="Orçamento pessoal">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Cartão</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="despesa.html">Despesa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="consulta.html">Consulta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/relatorio.html">Relatório</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col mb-5">
+        <h1 class="display-4">Registro de novo cartão</h1>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-auto">
+        <select class="form-control" id="bandeira">
+          <option value="">Bandeira</option>
+          <option value="1" class="fas fa-save">Visa</option>
+          <option value="2">MasterCard</option>
+          <option value="3">Maestro</option>
+          <option value="4">ELO</option>
+          <option value="5">American Express </option>
+          <option value="6">Hipercard</option>
+          <option value="6">Diners Club</option>
+        </select>
       </div>
 
-      <div class="row mb-2">
-        <div class="col-md-2">
-          <select class="form-control" id="bandeira">
-            <option value="">Bandeira</option>
-            <option value="1" class="fas fa-save">Visa</option>
-            <option value="2">MasterCard</option>
-            <option value="3">Maestro</option>
-            <option value="4">ELO</option>
-            <option value="5">American Express </option>
-            <option value="6">Hipercard</option>
-            <option value="6">Diners Club</option>
-          </select>
-        </div>
+      <div class="col-md-auto">
+        <input type="text" class="form-control" placeholder="Nome" id="nome" />
+      </div>
 
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Nome" id="nome" />
-        </div>
+      <div class="col-md-auto">
+        <select class="form-control" id="vencimento">
+          <option value="">Vencimento</option>
+          <option value="1">01</option>
+          <option value="2">02</option>
+          <option value="3">03</option>
+          <option value="4">04</option>
+          <option value="5">05</option>
+          <option value="6">06</option>
+          <option value="7">07</option>
+          <option value="1">08</option>
+          <option value="2">09</option>
+          <option value="3">10</option>
+          <option value="4">11</option>
+          <option value="5">12</option>
+          <option value="6">13</option>
+          <option value="7">14</option>
+          <option value="1">15</option>
+          <option value="2">16</option>
+          <option value="3">17</option>
+          <option value="4">18</option>
+          <option value="5">19</option>
+          <option value="6">20</option>
+          <option value="7">21</option>
+          <option value="1">22</option>
+          <option value="2">23</option>
+          <option value="3">24</option>
+          <option value="4">25</option>
+          <option value="5">26</option>
+          <option value="6">27</option>
+          <option value="7">28</option>
+          <option value="5">29</option>
+          <option value="6">30</option>
+          <option value="7">31</option>
+        </select>
+      </div>
 
-        <div class="col-md-auto">
-          <select class="form-control" id="vencimento">
-            <option value="">Vencimento</option>
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="6">06</option>
-            <option value="7">07</option>
-            <option value="1">08</option>
-            <option value="2">09</option>
-            <option value="3">10</option>
-            <option value="4">11</option>
-            <option value="5">12</option>
-            <option value="6">13</option>
-            <option value="7">14</option>
-            <option value="1">15</option>
-            <option value="2">16</option>
-            <option value="3">17</option>
-            <option value="4">18</option>
-            <option value="5">19</option>
-            <option value="6">20</option>
-            <option value="7">21</option>
-            <option value="1">22</option>
-            <option value="2">23</option>
-            <option value="3">24</option>
-            <option value="4">25</option>
-            <option value="5">26</option>
-            <option value="6">27</option>
-            <option value="7">28</option>
-            <option value="5">29</option>
-            <option value="6">30</option>
-            <option value="7">31</option>
-          </select>
-        </div>
-        
-        <div class="col-md-auto">
-          <input type="number" class="form-control" step="1.0" id="limite" placeholder="limite (R$)">
-        </div>
-      
+      <div class="col-md-auto">
+        <input type="number" class="form-control" step="1.0" id="limite" placeholder="limite (R$)">
+      </div>
 
-        <div class="col-md-auto d-flex justify-content-end">
-        
+
+      <div class="col-md-auto d-flex justify-content-end">
+
         <!--
           <button type="button" class="btn btn-primary" onclick="addCard()"> CONFIGURAR BOTÃO PARA ADICIONAR CARTÃO APÓS VALIDAÇÃO
             <i class="fas fa-save"></i>
           </button>
         -->
 
-          <button type="button" class="btn btn-primary" disabled> 
-            Salvar 
-            <i class="fas fa-save"></i>
+        <button type="button" class="btn btn-primary" disabled>
+          Salvar
+          <i class="fas fa-save"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalRegistraCompra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div id="modal_titulo_div">
+          <h5 class="modal-title" id="modal_titulo"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-
+        </div>
+        <div class="modal-body" id="modal_conteudo"></div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalRegistraCompra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div id="modal_titulo_div">
-            <h5 class="modal-title" id="modal_titulo"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="modal_conteudo"></div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </body>	
+</body>
 
 </html>
