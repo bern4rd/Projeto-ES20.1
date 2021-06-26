@@ -309,7 +309,7 @@ function carregaListaCompras(compras = Array(), filtro = false) {
 		let btn = document.createElement('button')
 		btn.className = 'btn btn-danger'
 		btn.innerHTML = '<i class="fa fa-times"  ></i>'
-		btn.id = `id_despesa_${d.id}`
+		btn.id = `id_compra_${d.id}`
 		btn.onclick = function(){
 			let id = this.id.replace('id_compra_','')
 			//alert(id)
