@@ -341,3 +341,31 @@ function carregaListaCompras(compras = Array(), filtro = false) {
 	this.carregaListaCompras(compras, true)
 
  }
+ listarBandeiras();
+
+//Função para listar as bandeiras na página
+function listarBandeiras(){
+
+	//Array com as bandeiras
+	const listasBandeira = ['Agicard', 'Amex', 'Aura', 'Avista', 'Banescard', 'Cabal', 'CredSystem', 'Diners', 'Discover', 'Elo', 'Good Card', 'Green Card', 'Hipercard', 'JCB', 'MasterCard', 'Policard', 'Sorocard', 'VR Benefícios', 'Valecard', 'Verocheque', 'Visa'];
+	
+	//acessando o elemento select na página
+	let select = document.getElementById('bandeira');
+
+	//precorendo todos os itens do array
+	listasBandeira.forEach(item => {
+
+		//criando o elemento a ser adicionando ao select
+		let option = document.createElement('option');
+
+		//inserindo texto ao elemento
+		option.innerText = item;
+
+		//incluindo o elemento ao select da página
+		option.text = item;
+		option.value = item;
+		select.appendChild(option);
+
+		//console.log(item);
+	});
+}
