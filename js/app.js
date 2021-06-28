@@ -17,6 +17,22 @@ class Compra {
 			}
 		}
 		
+		if (this.valor == 'e' || this.dia == 'e') {
+			return false
+		}
+		else if (this.dia < 1 || this.valor < 1) {
+			return false
+		}
+		else if (this.dia > 31) {
+			return false
+		}
+		else if (this.dia > 29 && this.mes == '2') {
+			return false
+		} 
+		else if (this.dia > 30 && ((this.mes == '4') || (this.mes == '6') || (this.mes == '9') || (this.mes == '11'))) {
+			return false
+		}
+
 		return true
 	}
 }
@@ -265,9 +281,17 @@ function carregaListaCompras(compras = Array(), filtro = false) {
 		switch(d.cartao){
 			case '1': d.cartao = 'Visa'
 				break
-			case '2': d.cartao = 'Master'
+			case '2': d.cartao = 'MasterCard'
 				break
-			case '3': d.cartao = 'Cielo'
+			case '3': d.cartao = 'Maestro'
+				break
+			case '4': d.cartao = 'ELO'
+				break
+			case '5': d.cartao = 'American Express'
+				break
+			case '6': d.cartao = 'Hipercard'
+				break
+			case '7': d.cartao = 'Diners Club'
 				break
 		}
 
