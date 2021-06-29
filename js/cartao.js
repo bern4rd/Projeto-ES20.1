@@ -1,0 +1,176 @@
+//Função para listar as bandeiras na página
+function listarBandeiras() {
+
+    //Array com as bandeiras
+    const listasBandeira = ['Agicard', 'Amex', 'Aura', 'Avista', 'Banescard', 'Cabal', 'CredSystem', 'Diners', 'Discover', 'Elo', 'Good Card', 'Green Card', 'Hipercard', 'JCB', 'MasterCard', 'Policard', 'Sorocard', 'VR Benefícios', 'Valecard', 'Verocheque', 'Visa'];
+
+    //acessando o elemento select na página
+    let select = document.getElementById('bandeira');
+
+    //precorendo todos os itens do array
+    listasBandeira.forEach(item => {
+
+        //criando o elemento a ser adicionando ao select
+        let option = document.createElement('option');
+
+        //inserindo texto ao elemento
+        option.innerText = item;
+
+        //incluindo o elemento ao select da página
+        option.text = item;
+        option.value = item;
+        select.appendChild(option);
+
+        //console.log(item);
+    });
+}
+
+class Cartao {
+    constructor(bandeira, nome, vencimento, limite) {
+        this.bandeira = bandeira;
+        this.nome = nome;
+        this.vencimento = vencimento;
+        this.limite = limite;
+    }
+
+    validarDadosC() {
+        for (let i in this) {
+            if (this[i] == undefined || this[i] == '' || this[i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class Bdc {
+
+    constructor() {
+        let id = localStorage.getItem('id');
+
+        if (id === null) {
+            localStorage.setItem('id', 0);
+        }
+    }
+
+    getProximoId() {
+        let proximoId = localStorage.getItem('id');
+        return parseInt(proximoId) + 1;
+    }
+
+    gravarCartao(c) {
+        let id = this.getProximoId();
+
+        localStorage.setItem(id, JSON.stringify(c));
+
+        localStorage.setItem('id', id);
+    }
+
+    recuperarTodosCartoes() {
+
+        //array de cartoes
+        let cartoes = Array();
+
+        let id = localStorage.getItem('id');
+
+        //recuperar todos os cartões cadastrado no localStore
+        for (let i = 1; i <= id; i++) {
+            //recuperar o cartão
+            let cartao = JSON.parse(localStorage.getItem(i));
+
+            //existe a possibilidade indices nulo/removido
+            //nesse caso, pular os indices
+            if (cartao === null) {
+                continue;
+            }
+
+            cartao.id = i;
+            cartoes.push(cartao);
+        }
+
+        return cartoes;
+    }
+
+    removerCartao(id){
+        localStorage.removeItem(id);
+    }
+}
+
+let bdc = new Bdc();
+
+function cadastrarCartao() {
+
+    let bandeira = document.getElementById('bandeira');
+    let nome = document.getElementById('nome');
+    let vencimento = document.getElementById('vencimento');
+    let limite = document.getElementById('limite');
+
+    let cartao = new Cartao(
+        bandeira.value,
+        nome.value,
+        vencimento.value,
+        limite.value
+    );
+
+    if (cartao.validarDadosC()) {
+        bdc.gravarCartao(cartao);
+        //dialog de sucesso
+        alert("Cartão cadastrado com sucesso!");
+
+        bandeira.value = "";
+        nome.value = "";
+        vencimento.value = "";
+        limite.value = "";
+        
+        carregaListasCartoes();
+
+    } else {
+        //dialog de erro
+        alert("Dados faltando!");
+    }
+
+}
+
+function carregaListasCartoes() {
+
+    let cartoes = Array();
+    cartoes = bdc.recuperarTodosCartoes();
+
+    //selecionando o elemento tbody
+    let listaCartoes = document.getElementById('listaCartoes');
+
+    //precorrer array cartoes e listando de forma dinâmica
+    cartoes.forEach(function(c){
+        
+        //console.log(c);
+
+        //criando linhas/ <tr>
+        let linha = listaCartoes.insertRow();
+
+        //criar as colunas/ <td>
+        linha.insertCell(0).innerHTML = c.bandeira;
+        linha.insertCell(1).innerHTML = c.nome;
+        linha.insertCell(2).innerHTML = "Dia " + c.vencimento ;
+        linha.insertCell(3).innerHTML = "R$ " + c.limite;
+
+        //botão de remover cartão
+        let btn = document.createElement("button");
+        btn.className = "btn btn-danger";
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        btn.id = `id_cartao_${c.id}`;
+        btn.onclick = function(){
+            //remover cartão
+            let id = this.id.replace('id_cartao_', '');
+            //alert(id);
+            
+            bdc.removerCartao(id);
+
+            //atualizar a tela após a remoção para sair a visualização da tabela
+            window.location.reload();
+        }
+        linha.insertCell(4).append(btn);
+
+        console.log(c);
+    });
+
+}

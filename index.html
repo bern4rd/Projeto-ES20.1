@@ -21,14 +21,15 @@
 	<!-- Bootstrap fim -->
 
 	<!-- Icon da barra do título-->
-	<link rel="icon" type="imagem/png" href="/img/icon.png"/>
+	<link rel="icon" type="imagem/png" href="/img/icon.png" />
 
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<script defer src="/js/app.js"></script>
+	<script defer src="/js/cartao.js"></script>
 
 </head>
 
-<body>
+<body onload="carregaListasCartoes(); listarBandeiras()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
 		<div class="container">
 			<a class="navbar-brand" href="#">
@@ -68,40 +69,60 @@
 
 		<div class="row mb-2">
 			<div class="col-md-auto">
-				<label for="bandeira"><strong>Bandeira</strong></label>
-				<select class="form-control" id="bandeira">
+				<!--<label for="bandeira"><strong>Bandeira</strong></label>-->
+				<select class="form-control" id="bandeira" required>
 					<option value="" selected disabled>Bandeira</option>
 				</select>
 			</div>
 
 			<div class="col-md-auto">
-				<label for="nome"><strong>Nome</strong></label>
-				<input type="text" class="form-control" placeholder="Nome" id="nome" />
+				<!--<label for="nome"><strong>Nome</strong></label>-->
+				<input type="text" class="form-control" placeholder="Nome" id="nome" required />
 			</div>
 
 			<div class="col-md-auto">
-				<label for="vencimento"><strong>Vencimento</strong></label>
-				<input type="number" min="1" max="31" class="form-control" placeholder="Dia" id="vencimento"
+				<!--<label for="vencimento"><strong>Vencimento</strong></label>-->
+				<input type="number" min="1" max="31" class="form-control" placeholder="Vence dia" id="vencimento"
 					required></input>
 			</div>
 
 			<div class="col-md-auto">
-				<label for="limite"><strong>Limite</strong></label>
-				<input type="number" class="form-control" step="0.1" min="0.1" id="limite" placeholder="R$">
+				<!--<label for="limite"><strong>Limite</strong></label>-->
+				<input type="number" class="form-control" step="0.1" min="0.1" id="limite" placeholder="R$" required>
 			</div>
 
 			<div class="col-md-auto d-flex justify-content-end">
-				<button type="button" class="btn btn-primary" onclick="alert('Cadastrando!');">
-					Cadastrar
+				<button type="button" class="btn btn-primary" onclick="cadastrarCartao()">
+					<!--Nome visivel do botao-->
 					<i class="fas fa-save"></i>
 				</button>
 
 			</div>
 		</div>
+		<br>
+		<div class="container-2">
+			<div class="row">
+				<div class="col">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Bandeira</th>
+								<th>Nome</th>
+								<th>Vencimento</th>
+								<th>Limite R$</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="listaCartoes">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="modalRegistraCompra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	<div class="modal fade" id="modalRegistraCartao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">

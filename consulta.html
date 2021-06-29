@@ -1,197 +1,204 @@
 <html>
-	<head>
-    <meta charset="utf-8" />
-		<title>Gerenciador de Despesas da Joana</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Gerenciador de Despesas da Joana</title>
 
-		<!-- Bootstrap início -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Bootstrap fim -->
+  <!-- Bootstrap início -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <script src="/js/app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap fim -->
 
-	</head>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script src="/js/app.js"></script>
 
-  <body onload="carregaListaCompras()">
+</head>
+
+<body onload="carregaListaCompras()">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-           <img id="logo" src="/img/logo.png" width="100" height="35" alt="Orçamento pessoal">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img id="logo" src="/img/logo.png" width="100" height="35" alt="Orçamento pessoal">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Cartão</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="despesa.html">Despesa</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="consulta.html">Consulta</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/relatorio.html">Relatório</a>
-            </li>
-          </ul>
-          
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Cartão</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="despesa.html">Despesa</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="consulta.html">Consulta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/relatorio.html">Relatório</a>
+          </li>
+        </ul>
+
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <div class="container">
-      <class class="col mb-5">
-          <h1 class="display-4">Consulta de despesas</h1>        
-      </class>
-    </div>  
+  <div class="container">
+    <class class="col mb-5">
+      <h1 class="display-4">Consulta de despesas</h1>
+    </class>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-2 col-sm-2">
-          <select class="form-control" id="ano">
-            <option value="">Ano</option>
-            <option value="1">2021</option>
-            <option value="2">2022</option>
-            <option value="3">2023</option>
-          </select>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-2 col-sm-2">
+        <select class="form-control" id="ano">
+          <option value="">Ano</option>
+          <option value="1">2021</option>
+          <option value="2">2022</option>
+          <option value="3">2023</option>
+        </select>
+      </div>
 
-        <div class="col-2 col-sm-2">
-          <select class="form-control" id="mes">
-            <option value="">Mês</option>
-            <option value="1">Janeiro</option>
-            <option value="2">Fevereiro</option>
-            <option value="3">Março</option>
-            <option value="4">Abril</option>
-            <option value="5">Maio</option>
-            <option value="6">Junho</option>
-            <option value="7">Julho</option>
-            <option value="8">Agosto</option>
-            <option value="9">Setembro</option>
-            <option value="10">Outubro</option>
-            <option value="11">Novembro</option>
-            <option value="12">Dezembro</option>
-          </select>
-        </div>
-        
-        <div class="col-2 col-sm-2">
-          <input type="number" class="form-control" placeholder="Dia" id="dia" />
-        </div>
+      <div class="col-2 col-sm-2">
+        <select class="form-control" id="mes">
+          <option value="">Mês</option>
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
 
-        <div class="col-md-4 col-sm-3">
-          <select class="form-control" id="cartao">
-            <option value="">Cartão</option>
-            <option value="1">Visa</option>
-            <option value="2">MasterCard</option>
-            <option value="3">Maestro</option>
-            <option value="4">ELO</option>
-            <option value="5">American Express </option>
-            <option value="6">Hipercard</option>
-            <option value="7">Diners Club</option>
-          </select>
-        </div>
+      <div class="col-2 col-sm-2">
+        <input type="number" class="form-control" placeholder="Dia" id="dia" />
+      </div>
 
-        <br><br>
+      <div class="col-md-4 col-sm-3">
+        <select class="form-control" id="cartao">
+          <option value="">Cartão</option>
+          <option value="1">Visa</option>
+          <option value="2">MasterCard</option>
+          <option value="3">Maestro</option>
+          <option value="4">ELO</option>
+          <option value="5">American Express </option>
+          <option value="6">Hipercard</option>
+          <option value="7">Diners Club</option>
+        </select>
+      </div>
 
-        <div class="col-md-6 col-sm-3">
-          <select class="form-control" id="categoria">
-            <option value="">Categoria</option>
-            <option value="1">Alimentação</option>
-            <option value="2">Assinatura e serviços</option>
-            <option value="3">Bares e Restaurantes</option>
-            <option value="4">Casa</option>
-            <option value="5">Compras</option>
-            <option value="6">Cuidados Pessoais</option>
-            <option value="7">Dívidas e empréstimos</option>
-            <option value="8">Educação</option>
-            <option value="9">Família e filhos</option>
-            <option value="10">Impostos e taxas</option>
-            <option value="11">Investimentos</option>
-            <option value="12">Lazer e hobbies</option>
-            <option value="13">Mercado</option>
-            <option value="14">Outros</option>
-            <option value="15">Pets</option>
-            <option value="16">Presentes e doações</option>
-            <option value="17">Roupas</option>
-            <option value="18">Saúde</option>
-            <option value="19">Trabalho</option>
-            <option value="20">Transporte</option>
-            <option value="21">Viagem</option>
-          </select>
-        </div>      
+      <br><br>
 
-        <div class="col-2 col-sm-3">
-          <select class="form-control" id="parcela">
-            <option value="">Parcela</option>
-            <option value="1">1x</option>
-            <option value="2">2x</option>
-            <option value="3">3x</option>
-            <option value="4">4x</option>
-            <option value="5">5x</option>
-            <option value="6">6x</option>
-            <option value="7">7x</option>
-            <option value="8">8x</option>
-            <option value="9">9x</option>
-            <option value="10">10x</option>
-            <option value="11">11x</option>
-            <option value="12">12x</option>          
-          </select>
-        </div>
+      <div class="col-md-6 col-sm-3">
+        <select class="form-control" id="categoria">
+          <option value="">Categoria</option>
+          <option value="1">Alimentação</option>
+          <option value="2">Assinatura e serviços</option>
+          <option value="3">Bares e Restaurantes</option>
+          <option value="4">Casa</option>
+          <option value="5">Compras</option>
+          <option value="6">Cuidados Pessoais</option>
+          <option value="7">Dívidas e empréstimos</option>
+          <option value="8">Educação</option>
+          <option value="9">Família e filhos</option>
+          <option value="10">Impostos e taxas</option>
+          <option value="11">Investimentos</option>
+          <option value="12">Lazer e hobbies</option>
+          <option value="13">Mercado</option>
+          <option value="14">Outros</option>
+          <option value="15">Pets</option>
+          <option value="16">Presentes e doações</option>
+          <option value="17">Roupas</option>
+          <option value="18">Saúde</option>
+          <option value="19">Trabalho</option>
+          <option value="20">Transporte</option>
+          <option value="21">Viagem</option>
+        </select>
+      </div>
 
-        <br><br>
+      <div class="col-2 col-sm-3">
+        <select class="form-control" id="parcela">
+          <option value="">Parcela</option>
+          <option value="1">1x</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+          <option value="4">4x</option>
+          <option value="5">5x</option>
+          <option value="6">6x</option>
+          <option value="7">7x</option>
+          <option value="8">8x</option>
+          <option value="9">9x</option>
+          <option value="10">10x</option>
+          <option value="11">11x</option>
+          <option value="12">12x</option>
+        </select>
+      </div>
 
-        <div class="col-md-8 col-sm-3">
-          <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
-        </div>
+      <br><br>
 
-        <div class="col-md-2 col-sm-3">
-          <input type="number" class="form-control" placeholder="Valor" id="valor" />
-        </div>
+      <div class="col-md-8 col-sm-3">
+        <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
+      </div>
 
-        <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary" onclick="pesquisarCompra()">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+      <div class="col-md-2 col-sm-3">
+        <input type="number" class="form-control" placeholder="Valor" id="valor" />
+      </div>
+
+      <div class="col-md-2 d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" onclick="pesquisarCompra()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </div>
 
     <br>
 
     <div class="container-2">
-        <div class="row">
-          <div class="col">
-            <table class="table" >
-              <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>Categoria</th>
-                  <th>Cartão</th>
-                  <th>Descrição</th>
-                  <th>Valor</th>
-                  <th>Parcela</th>                
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody id="listaCompras">
-                
-              </tbody>
-            </table>
-          </div>
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Categoria</th>
+                <th>Cartão</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Parcela</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="listaCompras">
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </body>	
+  </div>
+</body>
 
 </html>
