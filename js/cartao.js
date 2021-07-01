@@ -170,7 +170,7 @@ function carregaListasCartoes() {
         }
         linha.insertCell(4).append(btn);
 
-        console.log(c);
+        //console.log(c);
     });
 
 }

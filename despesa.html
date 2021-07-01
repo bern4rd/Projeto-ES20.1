@@ -24,11 +24,14 @@
   <!-- Icon da barra do título-->
   <link rel="icon" type="imagem/png" href="/img/icon.png" />
 
+  <!--inclusao dos arquivos .js-->
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <script src="/js/app.js"></script>
+  <script defer src="/js/cartao.js"></script>
+  <script defer src="/js/compra.js"></script>
+
 </head>
 
-<body>
+<body onload="listarCartoes();">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -63,19 +66,13 @@
     </div>
     <div class="row d-flex justify-content-center">
       <div class="col-sm-3">
-        <input type="date" class="form-control" placeholder="Dia" id="dia" />
+        <!--Ano-Mes-Dia-->
+        <input type="date" class="form-control" placeholder="data" id="data" />
       </div>
 
       <div class="col-sm-3">
         <select class="form-control" id="cartao">
-          <option value="">Cartão</option>
-          <option value="1">Visa</option>
-          <option value="2">MasterCard</option>
-          <option value="3">Maestro</option>
-          <option value="4">ELO</option>
-          <option value="5">American Express</option>
-          <option value="6">Hipercard</option>
-          <option value="7">Diners Club</option>
+          <option value="" selected disabled>Cartão</option>
         </select>
       </div>
       <div class="col-sm-3">
