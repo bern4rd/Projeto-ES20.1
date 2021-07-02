@@ -1,3 +1,11 @@
+//criando o banco no sqlite local (nome, versao, ..., tamanho)
+var banco = openDatabase("MeuBanco", "1.0", "MyBase", 4048);
+
+//criando a tabela no banco
+banco.transaction(function (criar) {
+	criar.executeSql("CREATE TABLE IF NOT EXISTS compras (id INTEGER PRIMARY KEY, data DATE NOT NULL, idCartao INT NOT NULL, categoria VARCHAR(100) NOT NULL, parcela INT NOT NULL, valor FLOAT NOT NULL, descricao TEXT NOT NULL)");
+});
+
 class Compra {
 	constructor(data, cartao, categoria, parcela, valor, descricao) {
 		this.data = data;
@@ -40,25 +48,30 @@ class Compra {
 
 function addCompra() {
 
-	let data = document.getElementById('data')
-	let cartao = document.getElementById('cartao')
-	let categoria = document.getElementById('categoria')
-	let parcela = document.getElementById('parcela')
-	let descricao = document.getElementById('descricao')
-	let valor = document.getElementById('valor')
+	let data = document.getElementById('data');
+	let cartao = document.getElementById('cartao');
+	let categoria = document.getElementById('categoria');
+	let parcela = document.getElementById('parcela');
+	let valor = document.getElementById('valor');
+	let descricao = document.getElementById('descricao');
 
 	let compra = new Compra(
 		data.value,
 		cartao.value,
 		categoria.value,
 		parcela.value,
-		descricao.value,
-		valor.value
+		valor.value,
+		descricao.value
 	)
 
 
 	if (compra.validarDados()) {
-		bd.gravar(compra)
+		//bd.gravar(compra)
+
+		banco.transaction(function (adicionar) {
+			//adicionando as compras no banco de dados
+			adicionar.executeSql("INSERT INTO compras (data, idCartao, categoria, parcela, valor, descricao) VALUES (?,?,?,?,?,?)", [compra.data, compra.cartao, compra.categoria, compra.parcela, compra.valor, compra.descricao]);
+		});
 
 		document.getElementById('modal_titulo').innerHTML = 'Registro inserido com sucesso'
 		document.getElementById('modal_titulo_div').className = 'modal-header text-success'
@@ -119,10 +132,3 @@ function listarCartoes() {
 
 	console.log(cartoes);
 }
-
-//criando o banco no sqlite local (nome, versao, ..., tamanho)
-var banco = openDatabase("MeuBanco", "1.0", "MyBase", 4048);
-//criando a tabela no banco
-banco.transaction (function(criar){
-	criar.executeSql("CREATE TABLE IF NOT EXISTS compras (id AUTO_INCREMENT PRIMARY KEY, data DATE, idCartao INT, categoria TEXT, parcela INT, valor REAL, descricao TEXT)");
-});
