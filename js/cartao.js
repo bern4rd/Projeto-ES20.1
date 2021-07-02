@@ -33,6 +33,7 @@ class Cartao {
         this.limite = limite;
     }
 
+    //arrumar para validar todos os campos
     validarDadosC() {
         for (let i in this) {
             if (this[i] == undefined || this[i] == '' || this[i] == null) {
@@ -91,8 +92,13 @@ class Bdc {
         return cartoes;
     }
 
-    removerCartao(id){
+    removerCartao(id) {
         localStorage.removeItem(id);
+    }
+
+    localizarCartao(id) {
+        let cartao = JSON.parse(localStorage.getItem(id));
+        return cartao;
     }
 }
 
@@ -114,19 +120,33 @@ function cadastrarCartao() {
 
     if (cartao.validarDadosC()) {
         bdc.gravarCartao(cartao);
-        //dialog de sucesso
-        alert("Cartão cadastrado com sucesso!");
 
+        //mostrar a tela de modal de sucesso ao adiconar a cartao
+        document.getElementById('modal_titulo').innerHTML = 'Cartão inserido com sucesso!'
+        document.getElementById('modal_titulo_div').className = 'modal-header text-success'
+        document.getElementById('modal_conteudo').innerHTML = 'Cartao foi cadastrada com sucesso!'
+        document.getElementById('modal_btn').innerHTML = 'Voltar'
+        document.getElementById('modal_btn').className = 'btn btn-success'
+
+        //dialog de sucesso
+        $('#modalRegistraCartao').modal('show')
+
+        //setando os valores do campo para vazio
         bandeira.value = "";
         nome.value = "";
         vencimento.value = "";
         limite.value = "";
-        
-        carregaListasCartoes();
 
     } else {
+        //mostrar a tela de modal com aviso que os dados estão icorretos ou faltando
+        document.getElementById('modal_titulo').innerHTML = 'Erro na inclusão do cartão'
+        document.getElementById('modal_titulo_div').className = 'modal-header text-danger'
+        document.getElementById('modal_conteudo').innerHTML = 'Erro na gravação, verifique se todos os campos foram preenchidos corretamente!'
+        document.getElementById('modal_btn').innerHTML = 'Voltar e corrigir'
+        document.getElementById('modal_btn').className = 'btn btn-danger'
+
         //dialog de erro
-        alert("Dados faltando!");
+        $('#modalRegistraCartao').modal('show')
     }
 
 }
@@ -140,8 +160,8 @@ function carregaListasCartoes() {
     let listaCartoes = document.getElementById('listaCartoes');
 
     //precorrer array cartoes e listando de forma dinâmica
-    cartoes.forEach(function(c){
-        
+    cartoes.forEach(function (c) {
+
         //console.log(c);
 
         //criando linhas/ <tr>
@@ -150,7 +170,7 @@ function carregaListasCartoes() {
         //criar as colunas/ <td>
         linha.insertCell(0).innerHTML = c.bandeira;
         linha.insertCell(1).innerHTML = c.nome;
-        linha.insertCell(2).innerHTML = "Dia " + c.vencimento ;
+        linha.insertCell(2).innerHTML = "Dia " + c.vencimento;
         linha.insertCell(3).innerHTML = "R$ " + c.limite;
 
         //botão de remover cartão
@@ -158,19 +178,19 @@ function carregaListasCartoes() {
         btn.className = "btn btn-danger";
         btn.innerHTML = '<i class="fas fa-times"></i>';
         btn.id = `id_cartao_${c.id}`;
-        btn.onclick = function(){
+        btn.onclick = function () {
             //remover cartão
             let id = this.id.replace('id_cartao_', '');
             //alert(id);
-            
+
             bdc.removerCartao(id);
 
-            //atualizar a tela após a remoção para sair a visualização da tabela
-            window.location.reload();
+            //atualizar a tabela de cartoe após a adição
+            carregaListasCartoes();
+
         }
         linha.insertCell(4).append(btn);
 
         //console.log(c);
     });
-
 }

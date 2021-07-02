@@ -31,7 +31,7 @@
 
 </head>
 
-<body onload="listarCartoes();">
+<body onload="listarCartoes(); listarCategorias();">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -77,28 +77,8 @@
       </div>
       <div class="col-sm-3">
         <select class="form-control" id="categoria">
-          <option value="">Categoria</option>
-          <option value="1">Alimentação</option>
-          <option value="2">Assinatura e serviços</option>
-          <option value="3">Bares e Restaurantes</option>
-          <option value="4">Casa</option>
-          <option value="5">Compras</option>
-          <option value="6">Cuidados Pessoais</option>
-          <option value="7">Dívidas e empréstimos</option>
-          <option value="8">Educação</option>
-          <option value="9">Família e filhos</option>
-          <option value="10">Impostos e taxas</option>
-          <option value="11">Investimentos</option>
-          <option value="12">Lazer e hobbies</option>
-          <option value="13">Mercado</option>
-          <option value="14">Outros</option>
-          <option value="15">Pets</option>
-          <option value="16">Presentes e doações</option>
-          <option value="17">Roupas</option>
-          <option value="18">Saúde</option>
-          <option value="19">Trabalho</option>
-          <option value="20">Transporte</option>
-          <option value="21">Viagem</option>
+          <option value="" selected disabled>Categoria</option>
+          <!--listando de forma dinâmica pelo js-->
         </select>
       </div>
     </div>
@@ -135,7 +115,7 @@
         </div>
         <div class="modal-body" id="modal_conteudo"></div>
         <div class="modal-footer">
-          <button type="button" data-dismiss="modal" id="modal_btn">
+          <button type="button" data-dismiss="modal" id="modal_btn" onClick="window.location.reload()">
             Voltar
           </button>
         </div>

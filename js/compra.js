@@ -80,6 +80,9 @@ function addCompra() {
 		document.getElementById('modal_btn').innerHTML = 'Voltar'
 		document.getElementById('modal_btn').className = 'btn btn-success'
 
+		//mostrando assim que salvar
+		mostarCompras();
+
 		//dialog de sucesso
 		$('#modalRegistraCompra').modal('show')
 
@@ -133,4 +136,65 @@ function listarCartoes() {
 	});
 
 	//console.log(cartoes); //só para verificar se está recebendo os cartoes certo no console
+}
+
+//função para lista as compras na tabela da página de relatórios
+function mostarCompras(){
+	var table = document.getElementById('tdoby-mostarCartoes');
+
+	banco.transaction(function(tx){
+		tx.executeSql('SELECT * FROM compras', [], function(tx, resultado){
+			var rows = resultado.rows;
+			var tr = '';
+			for(var i = 0; i < rows.length; i++){
+				//criando variavel do tipo Cartao() pra salvar o cartao
+				let cartao = new Cartao();
+
+				//chamando a função localizarCartao() passando o ID, a função retorna o cartao
+				cartao = bdc.localizarCartao(rows[i].idCartao);
+				
+				//organizando os dados na tabela
+				tr += '<tr>';
+				tr += '<td>' + rows[i].data + '</td>';
+				tr += '<td>' + rows[i].categoria + '</td>';
+				tr += '<td>' + rows[i].descricao + '</td>';
+
+				//para a coluna de cartao, usando a variavel cartao sertando o nome e a bandira
+				tr += '<td>' + cartao.nome + ' - ' + cartao.bandeira + '</td>';
+				tr += '<td>' + rows[i].parcela + '</td>';
+				tr += '<td>' + rows[i].valor + '</td>';
+			}
+
+			table.innerHTML = tr;
+
+		});
+	});
+
+}
+
+//Função para listar as categorias na página despesa
+function listarCategorias() {
+
+    //Array com as categorias
+    const listasCategoria = ['Alimentação', 'Assinatura e serviços', 'Bares e Restaurantes', 'Casa', 'Compras', 'Cuidados Pessoais', 'Dívidas e empréstimos', 'Educação', 'Família e filhos', 'Impostos e taxas', 'Investimentos', 'Lazer e hobbies', 'Mercado', 'Pets', 'Presentes ou doações', 'Roupas', 'Saúde', 'Trabalho', 'Transporte', 'Viagem', 'Outros'];
+
+    //acessando o elemento select na página
+    let select = document.getElementById('categoria');
+
+    //precorendo todos os itens do array
+    listasCategoria.forEach(item => {
+
+        //criando o elemento a ser adicionando ao select
+        let option = document.createElement('option');
+
+        //inserindo texto ao elemento
+        option.innerText = item;
+
+        //incluindo o elemento ao select da página
+        option.text = item;
+        option.value = item;
+        select.appendChild(option);
+
+        //console.log(item); //só pra verifica se ta tudo certo pelo console
+    });
 }
