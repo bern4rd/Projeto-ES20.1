@@ -16,6 +16,7 @@ class Compra {
 		this.descricao = descricao;
 	}
 
+	//arrumar esse validar os dados de compras
 	validarDados() {
 
 		//alert(document.getElementById('data').value);
@@ -66,13 +67,13 @@ function addCompra() {
 
 
 	if (compra.validarDados()) {
-		//bd.gravar(compra)
-
+		//caso os dados sejam validados, adicionar a compra no banco Sqlite
 		banco.transaction(function (adicionar) {
 			//adicionando as compras no banco de dados
 			adicionar.executeSql("INSERT INTO compras (data, idCartao, categoria, parcela, valor, descricao) VALUES (?,?,?,?,?,?)", [compra.data, compra.cartao, compra.categoria, compra.parcela, compra.valor, compra.descricao]);
 		});
 
+		//mostrar a tela de modal de sucesso ao adiconar a compra
 		document.getElementById('modal_titulo').innerHTML = 'Registro inserido com sucesso'
 		document.getElementById('modal_titulo_div').className = 'modal-header text-success'
 		document.getElementById('modal_conteudo').innerHTML = 'Compra foi cadastrada com sucesso!'
@@ -82,6 +83,7 @@ function addCompra() {
 		//dialog de sucesso
 		$('#modalRegistraCompra').modal('show')
 
+		//limpa os campos 
 		data.value = ''
 		cartao.value = ''
 		categoria.value = ''
@@ -90,7 +92,7 @@ function addCompra() {
 		valor.value = ''
 
 	} else {
-
+		//mostrar a tela de modal com aviso que os dados estão icorretos ou faltando
 		document.getElementById('modal_titulo').innerHTML = 'Erro na inclusão do registro'
 		document.getElementById('modal_titulo_div').className = 'modal-header text-danger'
 		document.getElementById('modal_conteudo').innerHTML = 'Erro na gravação, verifique se todos os campos foram preenchidos corretamente!'
@@ -130,5 +132,5 @@ function listarCartoes() {
 		//console.log(item);
 	});
 
-	console.log(cartoes);
+	//console.log(cartoes); //só para verificar se está recebendo os cartoes certo no console
 }

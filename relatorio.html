@@ -1,80 +1,113 @@
 <html>
-	<head>
-    <meta charset="utf-8" />
-		<title>Gerenciador de Despesas da Joana</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Gerenciador de Despesas da Joana</title>
 
-		<!-- Bootstrap início -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Bootstrap fim -->
+  <!-- Bootstrap início -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <script src="app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap fim -->
 
-	</head>
+  <!-- Icon da barra do título-->
+  <link rel="icon" type="imagem/png" href="/img/icon.png" />
 
-  <body onload="carregaListaDespesas()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-           <img id="logo" src="/img/logo.png" width="100" height="35" alt="Cliente Joana">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <!--inclusao dos arquivos .js-->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script defer src="/js/compra.js"></script>
+  <script defer src="/js/cartao.js"></script>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Cartão</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="despesa.html">Despesa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="consulta.html">Consulta</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/relatorio.html">Relatório</a>
-            </li>
-          </ul>
-          
-        </div>
+</head>
+
+<body onload="carregaListaDespesas()">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img id="logo" src="/img/logo.png" width="100" height="35" alt="Cliente Joana">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Cartão</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="despesa.html">Despesa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="consulta.html">Consulta</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/relatorio.html">Relatório</a>
+          </li>
+        </ul>
+
       </div>
-    </nav>
+    </div>
+  </nav>
 
-     <div class="container">
+  <div class="container">
     <div class="row">
-      <div class="col mb-5">
+      <div class="col mb-5 d-flex justify-content-center">
         <h1 class="display-4">Relatório de compras</h1>
       </div>
     </div>
-
-    <div class="row mb-2">
-      
+    <div class="row mb-2 d-flex justify-content-center">
       <div class="col-md-auto">
         <input type="text" class="form-control" placeholder="Nome do cartão" id="nome" />
       </div>
-
       <div class="col-md-auto">
         <input type="date" class="form-control" id="rel_data_inicio" />
       </div>
-
       <div class="col-md-auto">
         <input type="date" class="form-control" id="rel_data_fim" />
       </div>
-
-
       <div class="col-md-auto d-flex justify-content-end">
         <button type="button" class="btn btn-primary" disabled>
           Gerar Relatório
           <i class="fas fa-chart-bar"></i>
         </button>
+      </div>
+    </div>
+    <br>
+    <blockquote class="blockquote text-center">
+      <h4 class="card-subtitle mb-2 text-muted">Relatório Geral de Compras</h4>
+    </blockquote>
+    <div class="container-2">
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th>Cartao</th>
+                <th>Parcelas</th>
+                <th>Valor R$</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="mostarCompras">
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -90,10 +123,10 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      <div class="modal-body" id="modal_conteudo"></div>
-    <div class="modal-footer">
+        <div class="modal-body" id="modal_conteudo"></div>
+        <div class="modal-footer">
           <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
-  </div>
+        </div>
 
 </body>
 
