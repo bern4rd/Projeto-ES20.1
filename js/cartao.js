@@ -40,6 +40,17 @@ class Cartao {
                 return false;
             }
         }
+
+        if (this.vencimento == 'e' || this.limite == 'e') {
+			return false
+		}
+		else if (this.vecimento < 1 || this.limite < 1) {
+			return false
+		}
+		else if (this.vencimento > 31) {
+			return false
+		}		
+
         return true;
     }
 }

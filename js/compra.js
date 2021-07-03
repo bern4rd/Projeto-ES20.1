@@ -26,19 +26,13 @@ class Compra {
 			}
 		}
 
-		if (this.valor == 'e' || this.dia == 'e') {
+		if (this.valor == 'e' || this.parcela == 'e') {
 			return false
 		}
-		else if (this.dia < 1 || this.valor < 1) {
+		else if (this.parcela < 1 || this.valor < 1) {
 			return false
 		}
-		else if (this.dia > 31) {
-			return false
-		}
-		else if (this.dia > 29 && this.mes == '2') {
-			return false
-		}
-		else if (this.dia > 30 && ((this.mes == '4') || (this.mes == '6') || (this.mes == '9') || (this.mes == '11'))) {
+		else if (this.parcela > 12) {
 			return false
 		}
 
@@ -46,6 +40,39 @@ class Compra {
 	}
 }
 
+function pesquisarCompra(){
+	var table = document.getElementById('listaPesquisa');
+	let pesquisa = document.getElementById('pesquisa').value;
+
+	banco.transaction(function(tx){		
+		tx.executeSql('SELECT * FROM compras WHERE descricao = ?', [pesquisa], function(tx, resultado){
+			console.log(resultado)
+			var rows = resultado.rows;
+			var tr = '';
+			for(var i = 0; i < rows.length; i++){
+				//criando variavel do tipo Cartao() pra salvar o cartao
+				let cartao = new Cartao();
+
+				//chamando a função localizarCartao() passando o ID, a função retorna o cartao
+				cartao = bdc.localizarCartao(rows[i].idCartao);
+				
+				//organizando os dados na tabela
+				tr += '<tr>';
+				tr += '<td>' + rows[i].data + '</td>';
+				tr += '<td>' + rows[i].categoria + '</td>';
+				tr += '<td>' + rows[i].descricao + '</td>';
+
+				//para a coluna de cartao, usando a variavel cartao sertando o nome e a bandira
+				tr += '<td>' + cartao.nome + ' - ' + cartao.bandeira + '</td>';
+				tr += '<td>' + rows[i].parcela + '</td>';
+				tr += '<td>' + rows[i].valor + '</td>';
+			}
+
+			table.innerHTML = tr;
+
+		});
+	});
+}
 
 function addCompra() {
 
@@ -143,7 +170,7 @@ function mostarCompras(){
 	var table = document.getElementById('tdoby-mostarCartoes');
 
 	banco.transaction(function(tx){
-		tx.executeSql('SELECT * FROM compras', [], function(tx, resultado){
+		tx.executeSql('SELECT * FROM compras ORDER BY data DESC', [], function(tx, resultado){
 			var rows = resultado.rows;
 			var tr = '';
 			for(var i = 0; i < rows.length; i++){
