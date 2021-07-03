@@ -45,7 +45,7 @@ function pesquisarCompra(){
 	let pesquisa = document.getElementById('pesquisa').value;
 
 	banco.transaction(function(tx){		
-		tx.executeSql('SELECT * FROM compras WHERE descricao = ?', [pesquisa], function(tx, resultado){
+		tx.executeSql('SELECT * FROM compras WHERE descricao = ? ORDER BY data DESC', [pesquisa], function(tx, resultado){
 			console.log(resultado)
 			var rows = resultado.rows;
 			var tr = '';
