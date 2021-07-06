@@ -30,7 +30,8 @@
 
 </head>
 
-<body onload="carregaListasCartoes(); listarBandeiras()">
+<body onload="carregaListasCartoes(); listarBandeiras(); lembretePagamento();">
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
 		<div class="container">
 			<a class="navbar-brand" href="#">
@@ -138,9 +139,22 @@
 				</div>
 				<div class="modal-body" id="modal_conteudo"></div>
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" id="modal_btn"
-						onClick="window.location.reload()">Voltar
+					<button type="button" data-dismiss="modal" id="modal_btn" onClick="window.location.reload()">Voltar
 					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Modal de lembrete de Pagar cartão-->
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true" id="modalLembreteCartao">
+		<div class="modal-dialog modal-sm modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header justify-content-center">
+					<h5 class="modal-title" id="exampleModalLabel">Lembrete de Pagamento</h5>
+				</div>
+				<div class="modal-body justify-content-center">
+					<span id="dadosCartao"></span>
 				</div>
 			</div>
 		</div>

@@ -42,14 +42,14 @@ class Cartao {
         }
 
         if (this.vencimento == 'e' || this.limite == 'e') {
-			return false
-		}
-		else if (this.vecimento < 1 || this.limite < 1) {
-			return false
-		}
-		else if (this.vencimento > 31) {
-			return false
-		}		
+            return false
+        }
+        else if (this.vecimento < 1 || this.limite < 1) {
+            return false
+        }
+        else if (this.vencimento > 31) {
+            return false
+        }
 
         return true;
     }
@@ -204,4 +204,28 @@ function carregaListasCartoes() {
 
         //console.log(c);
     });
+}
+
+function lembretePagamento() {
+    //pegando a data do dia
+    now = new Date();
+
+    //recuperando os cartoes para checagem
+    let cartoes = Array();
+    cartoes = bdc.recuperarTodosCartoes();
+
+    //precorrendo todos os cartoes para verificar o dia do vencimento
+    for (var i = 0; i < cartoes.length; i++) {
+        //verificando se o dia do vencimento  é igual ao dia atual
+        if (cartoes[i].vencimento == now.getDate()) {
+
+            //mostrar a tela de modal de sucesso ao adiconar a cartao
+            var mensagem = 'O vencimento do cartão <b>' + cartoes[i].nome + '</b>, bandeira <b>' + cartoes[i].bandeira + '</b> é hoje.';
+            document.getElementById('dadosCartao').innerHTML = mensagem;
+
+            //Mostrando mensagem ao usuário
+            $('#modalLembreteCartao').modal('show')
+            //alert("Pagamendo do cartão hoje!");
+        }
+    }
 }
