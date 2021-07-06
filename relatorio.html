@@ -26,6 +26,7 @@
 
   <!--inclusao dos arquivos .js-->
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <script defer src="/js/compra.js"></script>
   <script defer src="/js/cartao.js"></script>
 
@@ -76,9 +77,15 @@
         <input type="date" class="form-control" id="rel_data_fim" />
       </div>
       <div class="col-md-auto d-flex justify-content-end">
-        <button type="button" class="btn btn-primary" disabled>
-          Gerar Relatório
+        <button type="button" class="btn btn-primary">
+          Relatório
           <i class="fas fa-chart-bar"></i>
+        </button>
+      </div>
+      <div class="col-md-auto d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" onclick="gerarGrafico();">
+          Gráfico
+          <i class="fas fa-chart-pie"></i>
         </button>
       </div>
     </div>
@@ -101,28 +108,21 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody id="tdoby-mostarCartoes"></tbody>
+            <tbody id="tdoby-mostarCompras"></tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Modal -->
-  <div class="modal fade" id="modalRegistraCompra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true" id="modalGráfico">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
-        <div id="modal_titulo_div">
-          <h5 class="modal-title" id="modal_titulo"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="modal_conteudo"></div>
-        <div class="modal-footer">
-          <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
-        </div>
+        <canvas class="line-chart"></canvas>
+      </div>
+    </div>
+  </div>
 
 </body>
 

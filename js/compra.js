@@ -40,22 +40,22 @@ class Compra {
 	}
 }
 
-function pesquisarCompra(){
+function pesquisarCompra() {
 	var table = document.getElementById('listaPesquisa');
 	let pesquisa = document.getElementById('pesquisa').value;
 
-	banco.transaction(function(tx){		
-		tx.executeSql('SELECT * FROM compras WHERE descricao = ? ORDER BY data DESC', [pesquisa], function(tx, resultado){
+	banco.transaction(function (tx) {
+		tx.executeSql('SELECT * FROM compras WHERE descricao = ? ORDER BY data DESC', [pesquisa], function (tx, resultado) {
 			console.log(resultado)
 			var rows = resultado.rows;
 			var tr = '';
-			for(var i = 0; i < rows.length; i++){
+			for (var i = 0; i < rows.length; i++) {
 				//criando variavel do tipo Cartao() pra salvar o cartao
 				let cartao = new Cartao();
 
 				//chamando a função localizarCartao() passando o ID, a função retorna o cartao
 				cartao = bdc.localizarCartao(rows[i].idCartao);
-				
+
 				//organizando os dados na tabela
 				tr += '<tr>';
 				tr += '<td>' + rows[i].data + '</td>';
@@ -166,20 +166,20 @@ function listarCartoes() {
 }
 
 //função para lista as compras na tabela da página de relatórios
-function mostarCompras(){
-	var table = document.getElementById('tdoby-mostarCartoes');
+function mostarCompras() {
+	var table = document.getElementById('tdoby-mostarCompras');
 
-	banco.transaction(function(tx){
-		tx.executeSql('SELECT * FROM compras ORDER BY data DESC', [], function(tx, resultado){
+	banco.transaction(function (tx) {
+		tx.executeSql('SELECT * FROM compras ORDER BY data DESC', [], function (tx, resultado) {
 			var rows = resultado.rows;
 			var tr = '';
-			for(var i = 0; i < rows.length; i++){
+			for (var i = 0; i < rows.length; i++) {
 				//criando variavel do tipo Cartao() pra salvar o cartao
 				let cartao = new Cartao();
 
 				//chamando a função localizarCartao() passando o ID, a função retorna o cartao
 				cartao = bdc.localizarCartao(rows[i].idCartao);
-				
+
 				//organizando os dados na tabela
 				tr += '<tr>';
 				tr += '<td>' + rows[i].data + '</td>';
@@ -202,26 +202,103 @@ function mostarCompras(){
 //Função para listar as categorias na página despesa
 function listarCategorias() {
 
-    //Array com as categorias
-    const listasCategoria = ['Alimentação', 'Assinatura e serviços', 'Bares e Restaurantes', 'Casa', 'Compras', 'Cuidados Pessoais', 'Dívidas e empréstimos', 'Educação', 'Família e filhos', 'Impostos e taxas', 'Investimentos', 'Lazer e hobbies', 'Mercado', 'Pets', 'Presentes ou doações', 'Roupas', 'Saúde', 'Trabalho', 'Transporte', 'Viagem', 'Outros'];
+	//Array com as categorias
+	const listasCategoria = ['Alimentação', 'Assinatura e serviços', 'Bares e Restaurantes', 'Casa', 'Compras', 'Cuidados Pessoais', 'Dívidas e empréstimos', 'Educação', 'Família e filhos', 'Impostos e taxas', 'Investimentos', 'Lazer e hobbies', 'Mercado', 'Pets', 'Presentes ou doações', 'Roupas', 'Saúde', 'Trabalho', 'Transporte', 'Viagem', 'Outros'];
 
-    //acessando o elemento select na página
-    let select = document.getElementById('categoria');
+	//acessando o elemento select na página
+	let select = document.getElementById('categoria');
 
-    //precorendo todos os itens do array
-    listasCategoria.forEach(item => {
+	//precorendo todos os itens do array
+	listasCategoria.forEach(item => {
 
-        //criando o elemento a ser adicionando ao select
-        let option = document.createElement('option');
+		//criando o elemento a ser adicionando ao select
+		let option = document.createElement('option');
 
-        //inserindo texto ao elemento
-        option.innerText = item;
+		//inserindo texto ao elemento
+		option.innerText = item;
 
-        //incluindo o elemento ao select da página
-        option.text = item;
-        option.value = item;
-        select.appendChild(option);
+		//incluindo o elemento ao select da página
+		option.text = item;
+		option.value = item;
+		select.appendChild(option);
 
-        //console.log(item); //só pra verifica se ta tudo certo pelo console
-    });
+		//console.log(item); //só pra verifica se ta tudo certo pelo console
+	});
+}
+
+//Função que faz o tratamento dos dados para o datasets do gráfico
+var categoriasList = [];
+var valoresCatList = [];
+function dadosGrafico() {
+	banco.transaction(function (tx) {
+		tx.executeSql('SELECT * FROM compras ORDER BY data DESC', [], function (tx, compras) {
+			var rows = compras.rows;
+			//console.log(rows);
+
+			//precorrendo a lista de compras para pega as categorias utilizadas
+			for (var i = 0; i < rows.length; i++) {
+				if (existirJa(categoriasList, rows[i].categoria)) {
+					continue;
+				} else {
+					categoriasList.push(rows[i].categoria);
+				}
+			}
+
+			//fazendo o somatório  dos gastos por categoria
+			for (var i = 0; i < categoriasList.length; i++) {
+				var soma = 0;
+				for (var j = 0; j < rows.length; j++) {
+					if(categoriasList[i] == rows[j].categoria){
+						soma = soma + rows[j].valor;
+					}
+				}
+				valoresCatList.push(soma);
+			}
+		});
+	});
+
+	//verifica a lista de categorias/valores no console
+	//console.log(valoresCatList);
+}
+
+//Função auxiliar para verificar se a categoria já existir dentro do array
+function existirJa(lista, categoria) {
+	//se o array for vazio, retorn false pra fazer a inclusão do primeiro elemento
+	if (!lista.length) {
+		return false;
+	} else {
+		//caso o array não seja vazio, precorre ele com for a fim de procura a categoria, se acha retorna true
+		for (var i = 0; i < lista.length; i++) {
+			if (lista[i] === categoria) {
+				return true;
+			}
+		}
+		//caso não se encontre a categoria dentro do array, retorna false para fazer a inclusão
+		return false;
+	}
+}
+
+//Função que gerar o gráfico em uma tela modal
+function gerarGrafico() {
+	dadosGrafico();
+	var ctx = document.getElementsByClassName("line-chart");
+
+	//Type, data e options
+	var charGraph = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: categoriasList,
+			datasets: [{
+				label: "Gastos por Categorias",
+				data: valoresCatList,
+				borderWidth: 2,
+				fill: false,
+				borderColor: 'rgb(75, 192, 192)',
+				tension: 0.1,
+				backgroundColor: 'transparent',
+			}]
+		}
+	});
+
+	$('#modalGráfico').modal('show');
 }
