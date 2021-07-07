@@ -29,6 +29,7 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <script defer src="/js/compra.js"></script>
   <script defer src="/js/cartao.js"></script>
+  <script defer src="/js/relatorio.js"></script>
 
 </head>
 
@@ -77,7 +78,7 @@
         <input type="date" class="form-control" id="rel_data_fim" />
       </div>
       <div class="col-md-auto d-flex justify-content-end">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" onclick="pesquisarPeriodo()">
           Relatório
           <i class="fas fa-chart-bar"></i>
         </button>
@@ -91,7 +92,7 @@
     </div>
     <br>
     <blockquote class="blockquote text-center">
-      <h4 class="card-subtitle mb-2 text-muted">Relatório Geral de Compras</h4>
+      <h4 class="card-subtitle mb-2 text-muted" id="title-rel">Relatório Geral de Compras</h4>
     </blockquote>
     <div class="container-2">
       <div class="row">
@@ -114,6 +115,27 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalErrorData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div id="modal_titulo_div">
+          <h5 class="modal-title" id="modal_titulo"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal_conteudo"></div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" id="modal_btn" onClick="window.location.reload()">Voltar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal -->
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true" id="modalGráfico">

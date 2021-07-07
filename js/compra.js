@@ -41,12 +41,25 @@ class Compra {
 }
 
 function pesquisarCompra() {
+
+	//vericando o campo, se receber vazio
+	if (!document.getElementById('pesquisa').value) {
+		//mostrar a tela de modal com aviso que os dados estão icorretos ou faltando
+		document.getElementById('modal_titulo').innerHTML = 'Campo vazio!'
+		document.getElementById('modal_titulo_div').className = 'modal-header text-danger'
+		document.getElementById('modal_conteudo').innerHTML = 'O campo está vazio, verifique e tente novamente.'
+		document.getElementById('modal_btn').innerHTML = 'Voltar e corrigir'
+		document.getElementById('modal_btn').className = 'btn btn-danger'
+
+		//dialog de erro
+		$('#modal-isEmpty').modal('show')
+	}
 	var table = document.getElementById('listaPesquisa');
 	let pesquisa = document.getElementById('pesquisa').value;
 
 	banco.transaction(function (tx) {
-		tx.executeSql('SELECT * FROM compras WHERE descricao = ? ORDER BY data DESC', [pesquisa], function (tx, resultado) {
-			console.log(resultado)
+		tx.executeSql("SELECT * FROM compras WHERE descricao LIKE ? ORDER BY data ASC", ['%' + pesquisa + '%'], function (tx, resultado) {
+			//console.log(resultado)
 			var rows = resultado.rows;
 			var tr = '';
 			for (var i = 0; i < rows.length; i++) {
@@ -56,9 +69,13 @@ function pesquisarCompra() {
 				//chamando a função localizarCartao() passando o ID, a função retorna o cartao
 				cartao = bdc.localizarCartao(rows[i].idCartao);
 
+				//formatando a data por formato brasileiro
+				data = new Date(rows[i].data)
+				data = data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+
 				//organizando os dados na tabela
 				tr += '<tr>';
-				tr += '<td>' + rows[i].data + '</td>';
+				tr += '<td>' + data + '</td>';
 				tr += '<td>' + rows[i].categoria + '</td>';
 				tr += '<td>' + rows[i].descricao + '</td>';
 
@@ -170,7 +187,7 @@ function mostarCompras() {
 	var table = document.getElementById('tdoby-mostarCompras');
 
 	banco.transaction(function (tx) {
-		tx.executeSql('SELECT * FROM compras ORDER BY data DESC', [], function (tx, resultado) {
+		tx.executeSql('SELECT * FROM compras ORDER BY data ASC', [], function (tx, resultado) {
 			var rows = resultado.rows;
 			var tr = '';
 			for (var i = 0; i < rows.length; i++) {
@@ -180,9 +197,24 @@ function mostarCompras() {
 				//chamando a função localizarCartao() passando o ID, a função retorna o cartao
 				cartao = bdc.localizarCartao(rows[i].idCartao);
 
+				//caso o cartao seja removido, mostra na tabela que foi removido
+				if (cartao == null) {
+					//bandeira, nome, vencimento, limite
+					cartao = new Cartao();
+					cartao.bandeira = "removido";
+					cartao.nome = 'removido';
+					cartao.vencimento = '5'
+					cartao.limite = '5';
+				}
+				//console.log(cartao);
+
+				//formatando a data por formato brasileiro
+				data = new Date(rows[i].data)
+				data = data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+
 				//organizando os dados na tabela
 				tr += '<tr>';
-				tr += '<td>' + rows[i].data + '</td>';
+				tr += '<td>' + data + '</td>';
 				tr += '<td>' + rows[i].categoria + '</td>';
 				tr += '<td>' + rows[i].descricao + '</td>';
 
@@ -248,7 +280,7 @@ function dadosGrafico() {
 			for (var i = 0; i < categoriasList.length; i++) {
 				var soma = 0;
 				for (var j = 0; j < rows.length; j++) {
-					if(categoriasList[i] == rows[j].categoria){
+					if (categoriasList[i] == rows[j].categoria) {
 						soma = soma + rows[j].valor;
 					}
 				}
