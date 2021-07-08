@@ -10,7 +10,6 @@
 * Felipe Bernard
 * Laura Gabrielle 
 * Michelle Lícia
-* Paulo Sérgio
 * Ytalo Paulo
 
 
